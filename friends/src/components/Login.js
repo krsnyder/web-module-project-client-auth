@@ -1,12 +1,14 @@
 import React, {useState} from 'react'
+import axios from 'axios'
 
 const emptyCredentials = {
-  username: "",
-  password: ""
+  username: "Lambda School",
+  password: "i<3Lambd4"
 }
 
 export default function Login() {
   const [credentials, setCredentials] = useState(emptyCredentials)
+  const [isLoading, setIsLoading] = useState(false)
 
   const onChange = e => {
     setCredentials({
@@ -17,11 +19,16 @@ export default function Login() {
 
   const login = e => {
     e.preventDefault()
+    // axios.post('/login', {
+    //   header: {
+    //     Authenti
+    //   }
+    // })
   }
 
   return (
     <div className="login-content">
-      Login Page
+      <h1>Login Page</h1>
       <div className="login-form">
         <form onSubmit={login}>
           <label>
