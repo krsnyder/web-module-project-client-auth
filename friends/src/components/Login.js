@@ -6,9 +6,9 @@ const emptyCredentials = {
   password: "i<3Lambd4"
 }
 
-export default function Login() {
+export default function Login(props) {
   const [credentials, setCredentials] = useState(emptyCredentials)
-  const [isLoading, setIsLoading] = useState(false)
+  // const [isLoading, setIsLoading] = useState(false)
 
   const onChange = e => {
     setCredentials({
@@ -19,11 +19,14 @@ export default function Login() {
 
   const login = e => {
     e.preventDefault()
-    // axios.post('/login', {
-    //   header: {
-    //     Authenti
-    //   }
-    // })
+    axios.post('http://localhost:5000/api/login', credentials)
+      .then(res => {
+        localStorage.setItem('token', res.data.payload)
+      })
+      .then(() => {
+        props.history.push('/private')
+      })
+      .catch(err => console.log(err))
   }
 
   return (
